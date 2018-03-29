@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe '/prefix1' do
+describe Todo do
   it "should " do
     # ...
   end

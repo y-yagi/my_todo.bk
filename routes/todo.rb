@@ -1,4 +1,4 @@
 class MyTodo
-  route 'tod' do |r|
+  route 'api' do |r|
   end
 end

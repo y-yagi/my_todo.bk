@@ -25,6 +25,7 @@ class MyTodo < Roda
   plugin :assets, css: 'app.scss', css_opts: {style: :compressed, cache: false}, timestamp_paths: true
   plugin :render, escape: true
   plugin :multi_route
+  plugin :all_verbs
 
   Unreloader.require('routes'){}
 
@@ -33,7 +34,27 @@ class MyTodo < Roda
     r.multi_route
 
     r.root do
+      @todos = Todo.all
       view 'index'
+    end
+
+    r.post 'todos' do
+      Todo.create(r.params['todo'])
+      r.redirect '/'
+    end
+
+    r.is 'todo', Integer do |id|
+      @todo = Todo[id]
+
+      r.get do
+        @todo.destroy
+        r.redirect '/'
+      end
+
+      r.post do
+        @todo.update(r.params['todo'])
+        r.redirect '/'
+      end
     end
   end
 end

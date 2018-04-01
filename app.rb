@@ -26,6 +26,7 @@ class MyTodo < Roda
   plugin :render, escape: true
   plugin :multi_route
   plugin :all_verbs
+  plugin :json, classes: [Array, Hash, Sequel::Model]
 
   Unreloader.require('routes'){}
 

@@ -7,6 +7,7 @@ gem 'roda', '>= 3'
 gem 'sequel', '>= 5'
 gem 'sequel_pg'
 gem 'rack-unreloader'
+gem 'rodauth'
 
 gem 'capybara'
 gem 'minitest', '>= 5.7.0'

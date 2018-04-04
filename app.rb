@@ -40,12 +40,15 @@ class MyTodo < Roda
     r.multi_route
 
     r.root do
-      @todos = Todo.all
+      account = Account[rodauth.session_value]
+      @todos = account.todos
       view 'index'
     end
 
     r.post 'todos' do
-      Todo.create(r.params['todo'])
+      todo = Todo.new(r.params['todo'])
+      todo.account = Account[rodauth.session_value]
+      todo.save
       r.redirect '/'
     end
 

@@ -19,6 +19,6 @@ Sequel.migration do
 
   down do
     Rodauth.drop_database_authentication_functions(self)
-    drop_table(:account_previous_password_hashes, :account_password_hashes)
+    drop_table(:account_password_hashes)
   end
 end

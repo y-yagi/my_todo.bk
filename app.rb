@@ -27,10 +27,15 @@ class MyTodo < Roda
   plugin :multi_route
   plugin :all_verbs
   plugin :json, classes: [Array, Hash, Sequel::Model]
+  plugin :rodauth do
+    enable :login, :logout, :create_account
+  end
 
   Unreloader.require('routes'){}
 
   route do |r|
+    r.rodauth
+    rodauth.require_authentication
     r.assets
     r.multi_route
 
